@@ -277,6 +277,10 @@
 // console.log(array1.find(element => element > 1000))                                                        //undefined
 // console.log(array1.find(element => element > 10))                                                          //12
 // console.log(array1.filter(element => element > 10))                                                        //[ 12, 130, 44 ]
+// console.log(array1.map(element => element > 10))                                                           // [ false, true, false, true, true ]
+// console.log(array1.map(element =>{ if(element > 10) return element}))                                      // [ false, true, false, true, true ]
+
+
 
 // function isPrime(element, index, array) {
 //   let start = 2;
@@ -292,7 +296,7 @@
 
 
 
-//24.forEach((element, index, array) => {                                                                     =>for loop or undefined
+//24.forEach((element, index, array) => {                                                                     =>for loop or undefined    can’t changes ele
 // const items = ['item1', 'item2', 'item3'];
 
 // // before
@@ -305,7 +309,22 @@
 //   console.log(item);                                                                                       //item1,item2,item3
 // });
 
-//25  .filter((element, index, array) => {                                                                    =>satisfies new array  or empty array []
+// const flatten = (arr) => {
+//     const result = [];
+//     arr.forEach((i) => {
+//       if (Array.isArray(i)) {
+//         result.push(...flatten(i));
+//       } else {
+//         result.push(i);
+//       }
+//     });
+//     return result;
+//   }
+//   const nested = [1, 2, 3, [4, 5, [6, 7], 8, 9]];
+//   console.log(flatten(nested));                                                                            // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+// 25  .filter((element, index, array) => {                                                                    =>satisfies new array  or empty array []  can’t changes ele
+// Ex : 1
 // let fruits = ['apple', 'banana', 'grapes', 'mango', 'orange']
 
 // function filterItems(arr, query) {
@@ -317,12 +336,41 @@
 // console.log(filterItems(fruits, 'ap'))                                                                     // ['apple', 'grapes']
 // console.log(filterItems(fruits, 'an'))                                                                     // ['banana', 'mango', 'orange']
 
-//26    .map((element, index, array) => {                                                                     =>satisfies new array  or empty array []
+// Ex : 2
+// let army = {
+//     minAge: 18,
+//     maxAge: 27,
+//     canJoin(ele) {
+//         console.log(ele);
+//       return ele.age >= this.minAge && ele.age < this.maxAge;
+//     }
+//   };
+  
+//   let users = [
+//     {age: 16},
+//     {age: 20},
+//     {age: 23},
+//     {age: 30}
+//   ];
+  
+//   // find users, for who army.canJoin returns true
+//   let soldiers = users.filter(army.canJoin, army);
+  
+//   console.log(soldiers.length); // 2
+//   console.log(soldiers[0].age); // 20
+//   console.log(soldiers[1].age); // 23
+
+// console.log(filterItems(fruits, 'ap'))                                                                     // ['apple', 'grapes']
+// console.log(filterItems(fruits, 'an'))                                                                     // ['banana', 'mango', 'orange']
+
+//26    .map((element, index, array) => {                                                                     => satisfies new changes ele array or undefined in new array
+//Ex : 1
 // const numbers = [1, 4, 9];
 // const roots = numbers.map((num) => Math.sqrt(num))                                                         //[1, 2, 3]
 // console.log(numbers)                                                                                       //[ 1, 4, 9 ]
 // console.log(num.map((x=>x*2)))                                                                             //x=element //[ 2, 4, 6, 8, 10 ]
 
+//Ex : 2
 // const numbers = [1, 2, 3, 4];
 // const filteredNumbers = numbers.map((num, index) => {
 //   if (num < 3) {
@@ -331,7 +379,35 @@
 // });
 // console.log(filteredNumbers)                                                                               //[ 1, 2, undefined, undefined ]
 
-//27  reduce((previousValue, currentValue, currentIndex, array) => { /* ... */ }, initialValue)               =>The value that results from running the "reducer"
+// const filteredNumbers = numbers.map((num, index) => {
+//     if (num < 3) {
+//       return num+10;
+//     }
+//     else{
+//         return num
+//     }
+//   });
+//   console.log(filteredNumbers)                                                                                // [ 11, 12, 3, 4 ]
+
+//Ex : 3
+// const kvArray = [{ key: 1, value: 10 },
+//     { key: 2, value: 20 },
+//     { key: 3, value: 30 }];
+// const reformattedArray = kvArray.map(({ key, value}) => ({ [key]: value }));
+// console.log(reformattedArray);                                                                              // [ { '1': 10 }, { '2': 20 }, { '3': 30 } ]
+
+//Ex : 4
+// const arr =['1', '2', '3']
+// const a = arr.map(ele=>{
+//     return parseInt(ele)
+//     // return Number(ele)
+// })
+// console.log(arr);                                                                                               // ['1', '2', '3']
+// console.log(a);                                                                                                 // [ 1, 2, 3 ]
+
+
+// 27  reduce((previousValue, currentValue, currentIndex, array) => { /* ... */ }, initialValue)               =>The value that results from running the "reducer"
+// Ex : 1
 // var x=[10,20,30,40]
 // var test = (p,c)=>p+c
 // console.log(x.reduce(test))                                                                                //100
@@ -346,6 +422,7 @@
 // }
 // console.log(x.reduce(t1))                                                                                  //100
 
+// Ex : 2
 // let deposite=[200,440,7000,680]
 // const max=deposite.reduce((a,b)=>{
 //     if(a>b)return a
@@ -354,6 +431,106 @@
 //deposite[0])
 // console.log(max)                                                                                           //7000
 
+// Ex : 3
+// const getMax = (a, b) => {
+//     console.log("a",a);
+//     console.log("b",b);
+//     console.log("max",Math.max(a, b))
+//     return Math.max(a, b)
+// };
+// callback is invoked for each element in the array starting at index 0
+// console.log([12, 100,23,5,88].reduce(getMax)); // 100
+// console.log([    50].reduce(getMax, 10)); // 50
+// const a =[1, 100,23,5,88]
+// console.log(Math.max(...a));
+
+// Ex : 4
+// let initialValue = 0
+// let sum = [{x: 1}, {x: 2}, {x: 3}].reduce(function (previousValue, currentValue) {
+//     return previousValue + currentValue.x
+// }, initialValue)
+// console.log(sum)                                                                                             // 6
+
+// Ex : 5
+// let flattened = [[0, 1], [2, 3], [4, 5]].reduce(
+//     function(previousValue, currentValue) {
+//       return previousValue.concat(currentValue)
+//     },
+//   )
+//   console.log(flattened);                                                                                    // [ 0, 1, 2, 3, 4, 5 ]
+
+// Ex : 6
+// const names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice']
+// let countedNames = names.reduce(function (allNames, name) {
+//     console.log("allNames",allNames);
+//     console.log("name",name);
+
+//   if (name in allNames) {
+//     allNames[name]++
+//     console.log("iffff");
+//   }
+//   else {
+//     console.log("elssss");
+//     allNames[name] = 1
+//   }
+//   return allNames
+// }, {})
+// console.log(countedNames);                                                                               // { Alice: 2, Bob: 1, Tiff: 1, Bruce: 1 }
+
+// Ex : 7
+// const people = [
+//     { name: 'Alice', age: 21 },
+//     { name: 'Max', age: 20 },
+//     { name: 'Jane', age: 20 }
+//   ];
+  
+//   function groupBy(objectArray, property) {
+//     return objectArray.reduce(function (acc, obj) {
+//       let key = obj[property]
+//       if (!acc[key]) {
+//         acc[key] = []
+//       }
+//       acc[key].push(obj)
+//       return acc
+//     }, {})
+//   }
+  
+//   let groupedPeople = groupBy(people, 'age')
+// console.log(groupedPeople);                                                                               //{
+                                                                                                             //   '20': [ { name: 'Max', age: 20 }, { name: 'Jane', age: 20 } ],
+                                                                                                             //   '21': [ { name: 'Alice', age: 21 } ]
+                                                                                                             // }
+
+// Ex : 8                                                                                                            
+// const friends = [{
+//     name: 'Anna',
+//     books: ['Bible', 'Harry Potter'],
+//     age: 21
+//   }, {
+//     name: 'Bob',
+//     books: ['War and peace', 'Romeo and Juliet'],
+//     age: 26
+//   }, {
+//     name: 'Alice',
+//     books: ['The Lord of the Rings', 'The Shining'],
+//     age: 18
+//   }]
+  
+//   let allbooks = friends.reduce(function(previousValue, currentValue) {
+//       console.log([...previousValue, ...currentValue.books]);
+//     return [...previousValue, ...currentValue.books]
+//   }, ['Alphabet'])
+// console.log(allbooks);                                          // [ 'Alphabet', 'Bible', 'Harry Potter', 'War and peace','Romeo and Juliet', 'The Lord of the Rings','The Shining']
+
+//Ex : 9
+// const myArray = ['a', 'b', 'a', 'b', 'c', 'e', 'e', 'c', 'd', 'd', 'd', 'd']
+// let myArrayWithNoDuplicates = myArray.reduce(function (previousValue, currentValue) {
+//   if (previousValue.indexOf(currentValue) === -1) {
+//     previousValue.push(currentValue)
+//   }
+//   return previousValue
+// }, [])
+// console.log(myArrayWithNoDuplicates)                                                                        // [ 'a', 'b', 'c', 'e', 'd' ]
 
 // 28  .toString()                                                                                            =>string
 // var array1 = [1, 2, 'a', '1a'];
@@ -511,3 +688,98 @@
 
 // console.log(jaldip)
 
+
+// ############################## for...of ##### for...in ############################
+// let arr = ["Apple", "Orange", "Pear"];
+// let obj = {name:"jaldip",age:20}
+
+// // array
+// // for (let value of arr) {
+// //   console.log(value);                                               // Apple, Orange, Pear
+// // }
+
+// for (let key in arr) {
+//   console.log(arr[key]);                                        // 0 Apple, 1 Orange, 2 Pear
+// }
+
+// for (let [key,val] of arr.entries()) {
+//   console.log(key,val);                                             // 0 Apple, 1 Orange, 2 Pear
+// }
+
+// // object
+// for (let key in obj) {
+//     console.log(key,obj[key]);                                     // name jaldip , age 20
+// }
+
+// for (let [key,val] of Object.entries(obj)) {
+//   console.log(key,val);                                            // name jaldip , age 20
+// }
+
+
+// ########################### Static methods ############################
+// 1. Array.from(arrayLike, function mapFn(element) { /* ... */ }, thisArg)                                     => A new Array instance.
+//    Array.from(arrayLike, (element, index) => { /* ... */ } )
+
+// console.log(Array.from('foo'));                                                                              // [ 'f', 'o', 'o' ]
+
+// let arr = [1, 2, 3]
+// Array.from(arr, (ele,ind) => console.log(ind,ele));                                                          // 0 1, 1 2, 2 3....
+
+// Map function to call on every element of the array
+// Array.from(arr, (ele,ind) => console.log(ele*2));                                                            //2, 4, 6
+            
+// Array from a Set
+// const set = new Set(['foo', 'bar', 'baz', 'foo']);
+// console.log(Array.from(set));
+
+// Array from a Map
+// const map = new Map([[1, 2], [2, 4], [4, 8]]);
+// console.log(Array.from(map));
+
+// const mapper = new Map([['1', 'a'], ['2', 'b']]);
+// console.log(Array.from(mapper.values()));                                                                    // ['a', 'b'];
+// console.log(Array.from(mapper.keys()));                                                                      // ['1', '2'];
+
+// console.log(Array.from({length: 5}, (v, i) => i));                                                           // [ 0, 1, 2, 3, 4 ]
+
+
+// Sequence generator (range)
+// const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (v, i) => start + (i * step));
+
+// Generate numbers range 0..4
+// console.log(range(0, 4, 1));                                                                                 // [0, 1, 2, 3, 4]
+
+// Generate numbers range 1..10 with step of 2
+// console.log(range(1, 10, 2));                                                                                // [1, 3, 5, 7, 9]
+
+// Generate the alphabet using Array.from making use of it being ordered as a sequence
+// console.log(range('A'.charCodeAt(), 'Z'.charCodeAt(), 1).map(x => String.fromCharCode(x)));                  // ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+
+// 2. Array.isArray(value)                                                                                      => true if the value is an Array; otherwise, false.
+// all following calls return true
+// Array.isArray([]);
+// Array.isArray([1]);
+// Array.isArray(new Array());
+// Array.isArray(new Array('a', 'b', 'c', 'd'));
+// Array.isArray(new Array(3));
+
+// all following calls return false
+// Array.isArray();
+// Array.isArray({});
+// Array.isArray(null);
+// Array.isArray(undefined);
+// Array.isArray(17);
+// Array.isArray('Array');
+// Array.isArray(true);
+// Array.isArray(false);
+// Array.isArray(new Uint8Array(32));
+// Array.isArray({ __proto__: Array.prototype });
+
+// 3.Array.of(element0, element1, /* ... ,*/ elementN)                                                      => A new Array instance.
+// console.log(Array.of(1, 2, 3));                                                                          // [1, 2, 3]
+// console.log(Array.of(1));                                                                                // [1]
+// console.log(Array.of(1, 2, 3));                                                                          // [1, 2, 3]
+// console.log(Array.of(undefined));                                                                        // [undefined]
+
+// ##################################################################################################
