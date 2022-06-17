@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // setItem(key, value) – store key/value pair.
+    // getItem(key) – get the value by key.
+    // removeItem(key) – remove the key with its value.
+    // clear() – delete everything.
+    // key(index) – get the key on a given position.
+    // length – the number of stored items.
+
+    // #########################################################################################################################
+    // LocalStorage
+    // window.localStorage.setItem("test1", "hiiiiiiiii");
+    // console.log( localStorage.getItem('test1') )
+
+    // set key
+    // localStorage.test = 2;
+    
+    // get key
+    // console.log( localStorage.test ); // 2
+
+    // remove key
+    // delete localStorage.test;
+
+    // Rigth Way
+    // We can use JSON to store objects though:
+    // localStorage.user = JSON.stringify({ name: "John" });
+    // // console.log(localStorage.user);                               // {"name":"John"}
+    // let user = JSON.parse(localStorage.user);
+    // console.log(user);                                               // {name: 'John'}
+    // console.log(user.name);                                          // John
+
+    // Wrong Way
+    // localStorage.user1 = { name: "Johnnnnn" };
+    // console.log(localStorage.user1);                                 // [object Object]
+    
+    // console.log(localStorage.length);                                // 3
+    // console.log(localStorage.clear());                               // clear all cookie
+    
+    
+    // #########################################################################################################################
+    //  sessionStorage
+    //     sessionStorage.setItem('mytest', 1);
+    //     console.log( sessionStorage.getItem('mytest') );                  // after refresh: 1
+    // #########################################################################################################################
+
+    // document.cookie = "user=John"; // update only cookie named 'user'
+    // console.log(document.cookie); // show all cookies
+
+  </script>
+</html>
