@@ -1,0 +1,11 @@
+#googlemap{
+    width: 80%;
+    height: 400px;
+    margin: 20px auto;
+}
+
+.jumbotron{
+    background-color: transparent;
+    margin: 0;
+    padding: 10px ;
+}
