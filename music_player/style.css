@@ -1,0 +1,38 @@
+.container{
+    margin: 5%;
+}
+
+
+.songList{
+    margin-top: 74px;
+}
+
+.songItem{
+    height: 50px;
+    display: flex;
+    background-color: white;
+    
+    color: black;
+    margin: 12px 0;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 34px;
+}
+
+#myRange{
+    width: 50vw; 
+    cursor: pointer;
+}
+
+.mainIcon{
+    margin: 14px 0px 0px 25%; 
+}
+.mainIcon i{
+    cursor: pointer;
+}
+.songPlayIcon{
+    margin: 0px 5px 0px 5px;
+}
+.no{
+    margin: 0px 5px;
+}
