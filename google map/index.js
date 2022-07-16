@@ -1,11 +1,12 @@
-var mylatlng = {lat:38.3460, lng:-0.4907}
-var mapOptions ={
-    center : mylating,
-    zoom : 7,
-    mapTypeId : googls.maps.mapTypeId.ROADMAP
+const uluru = { lat: 72.8311, lng:21.1702 };
+function myMap() {
+  var mapProp = {
+    // center: new google.maps.LatLng(51.508742, -0.12085),
+    center: uluru,
+    zoom: 5,
+  };
+  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 }
-
-var map = new google.maps.Map(document.getElementById("googleMap"),mapOptions)
 var directionsService = new google.maps.DirectionsService();
 var directionsDisplay = new google.maps.DirectionsDisplay();
 directionsDisplay.setmap(map)
@@ -33,12 +34,12 @@ function calcRoute(){
     })
 }
 
-var options = {
-    types:['(cities)']
-}
+    var options = {
+        types:['(cities)']
+    }
 
-var input1 = document.getElementById("from");
-var autocomplete1 = new google.maps.places.Autocomplete(input1,options)
+    var input1 = document.getElementById("from");
+    var autocomplete1 = new google.maps.places.Autocomplete(input1,options)
 
-var input2 = document.getElementById("to");
-var autocomplete2 = new google.maps.places.Autocomplete(input2,options)
+    var input2 = document.getElementById("to");
+    var autocomplete2 = new google.maps.places.Autocomplete(input2,options)
